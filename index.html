@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="THkKhxkf-0T1_yJfG8pywF_guehZG-07Jnxhk9V9RNI" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ibrahim Almikhlafi - Full Stack Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #1a1a1a;
+      --surface-light: #2a2a2a;
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --secondary: #3b82f6;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --card-bg: rgba(30, 41, 59, 0.3);
+      --terminal-green: #10b981;
+      --terminal-blue: #3b82f6;
+      --terminal-purple: #8b5cf6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 180px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {
+      position: relative;
+    }
+
+    .greeting {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-text h1 span {
+      color: var(--primary);
+    }
+
+    .title {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--primary);
+      padding: 3px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+    }
+
+    .image-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--surface);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: var(--bg);
+    }
+
+    /* Terminal Window */
+    .terminal {
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 2rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    .terminal-header {
+      background: var(--surface-light);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .terminal-dot.red {
+      background: #ef4444;
+    }
+
+    .terminal-dot.yellow {
+      background: #f59e0b;
+    }
+
+    .terminal-dot.green {
+      background: #10b981;
+    }
+
+    .terminal-content {
+      padding: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    .terminal-line {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .prompt {
+      color: var(--primary);
+      font-weight: 500;
+      min-width: 80px;
+    }
+
+    .command {
+      color: var(--secondary);
+    }
+
+    .output {
+      color: var(--text-muted);
+      margin-left: 90px;
+      margin-top: 0.25rem;
+    }
+
+    /* Section Common */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .education-card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .education-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .education-title {
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .education-date {
+      background: var(--primary);
+      color: var(--bg);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .education-details {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .coursework-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .course-item {
+      background: var(--surface-light);
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-left: 3px solid var(--primary);
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-header i {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .skill-header h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .skill-tag {
+      background: var(--surface-light);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--text);
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .skill-tag.primary {
+      background: linear-gradient(45deg, var(--primary), transparent);
+      border-color: var(--primary);
+    }
+
+    .skill-tag.secondary {
+      background: linear-gradient(45deg, var(--secondary), transparent);
+      border-color: var(--secondary);
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-content {
+      padding: 2rem;
+    }
+
+    .project-type {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--bg);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .project-description {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-tag {
+      background: var(--surface-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project-features {
+      list-style: none;
+    }
+
+    .project-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .project-features i {
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--surface);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s;
+    }
+
+    .contact-item:hover {
+      transform: translateX(5px);
+      border-color: var(--primary);
+    }
+
+    .contact-item i {
+      font-size: 1.5rem;
+      color: var(--primary);
+      width: 40px;
+    }
+
+    .contact-item-content h3 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .contact-item-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--surface);
+      border-radius: 50%;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 1px solid var(--border);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      color: var(--bg);
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--surface);
+      padding: 4rem 0 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+
+      .hero-content,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+
+      .image-wrapper {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+      }
+
+      .coursework-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--surface);
+        flex-direction: column;
+        padding: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding: 140px 0 60px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .image-wrapper {
+        width: 240px;
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">ibrahim<span>.</span>dev</a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="#about" class="nav-link">about</a></li>
+        <li><a href="#skills" class="nav-link">skills</a></li>
+        <li><a href="#projects" class="nav-link">projects</a></li>
+        <li><a href="#contact" class="nav-link">contact</a></li>
+        <li>
+          <a href="mailto:almikhlafi.ibrahim@email.com" class="btn">
+            <i class="fas fa-paper-plane"></i> hire me
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="greeting">
+          <i class="fas fa-terminal"></i> Hello, I'm
+        </div>
+        <h1>Ibrahim <span>Almikhlafi</span></h1>
+        <div class="title">Full Stack Web Developer</div>
+        <p class="description">
+          IT student specializing in building modern web applications and cross-platform solutions.
+          Passionate about clean code, efficient systems, and creating digital experiences that matter.
+        </p>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+          <a href="#projects" class="btn">
+            <i class="fas fa-code"></i> View Projects
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <i class="fas fa-envelope"></i> Get in Touch
+          </a>
+        </div>
+
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.8rem;">
+              terminal — bash
+            </span>
+          </div>
+          <div class="terminal-content">
+            <div class="terminal-line">
+              <span class="prompt">$ whoami</span>
+              <span class="command">ibrahim-almikhlafi</span>
+            </div>
+            <div class="terminal-line">
+              <span class="prompt">$ location</span>
+              <span class="command">San'a, Yemen</span>
+            </div>
+            <div class="terminal-line">
+              <span class="prompt">$ status</span>
+              <span class="command">Available for opportunities</span>
+            </div>
+            <div class="terminal-line">
+              <span class="prompt">$ contact</span>
+              <span class="command">+967 777 136 688</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <div class="image-wrapper">
+          <div class="image-inner">
+            <img src="photo/me.jpg" alt="Ibrahim Almikhlafi" class="profile-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a third-year Information Technology student at Sana'a University with a strong focus on
+            full-stack web development. My journey in programming started with curiosity and has evolved
+            into a passion for creating efficient, scalable digital solutions.
+          </p>
+          <p>
+            I believe in writing clean, maintainable code and continuously learning new technologies.
+            My approach combines technical expertise with problem-solving skills to deliver solutions
+            that not only work but also provide excellent user experiences.
+          </p>
+          <p>
+            Currently seeking opportunities where I can contribute to meaningful projects while
+            expanding my skills in a professional environment.
+          </p>
+
+          <div style="margin-top: 2rem;">
+            <a href="#contact" class="btn">
+              <i class="fas fa-paper-plane"></i> Let's Connect
+            </a>
+          </div>
+        </div>
+
+        <div class="education-card">
+          <div class="education-header">
+            <div>
+              <h3 class="education-title">Information Technology</h3>
+              <p class="education-details">Sana'a University, Yemen</p>
+            </div>
+            <span class="education-date">2027</span>
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+            Currently completing third year of a four-year Bachelor's program focused on
+            web development, software engineering, and cybersecurity principles.
+          </p>
+
+          <h4 style="color: var(--text); margin-bottom: 1rem; font-size: 1.1rem;">
+            Relevant Coursework
+          </h4>
+          <div class="coursework-grid">
+            <div class="course-item">Web Development</div>
+            <div class="course-item">Software Security</div>
+            <div class="course-item">OOP Programming</div>
+            <div class="course-item">Database Security</div>
+            <div class="course-item">Data Structures</div>
+            <div class="course-item">Computer Networks</div>
+            <div class="course-item">Cloud Computing</div>
+            <div class="course-item">Web Security</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" style="background: var(--surface);">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fas fa-code"></i>
+            <h3>Programming</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag primary">Python</span>
+            <span class="skill-tag primary">PHP</span>
+            <span class="skill-tag primary">C#</span>
+            <span class="skill-tag primary">C++</span>
+            <span class="skill-tag primary">Dart</span>
+            <span class="skill-tag primary">HTML/CSS</span>
+            <span class="skill-tag primary">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fas fa-cogs"></i>
+            <h3>Frameworks & Tools</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag secondary">Flutter</span>
+            <span class="skill-tag secondary">.NET</span>
+            <span class="skill-tag secondary">REST APIs</span>
+            <span class="skill-tag secondary">Git/GitHub</span>
+            <span class="skill-tag secondary">Firebase</span>
+            <span class="skill-tag secondary">SQL Server</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-header">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Development</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Full Stack Dev</span>
+            <span class="skill-tag">Web Security</span>
+            <span class="skill-tag">Database Design</span>
+            <span class="skill-tag">Responsive Design</span>
+            <span class="skill-tag">Cross-Platform</span>
+            <span class="skill-tag">Version Control</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-content">
+            <span class="project-type">Academic</span>
+            <h3 class="project-title">E-Commerce Platform</h3>
+            <p class="project-description">
+              Complete e-commerce website with user authentication, shopping cart,
+              product management, and secure payment integration.
+            </p>
+
+            <div class="project-tech">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">PHP</span>
+            </div>
+
+            <ul class="project-features">
+              <li><i class="fas fa-check-circle"></i> User authentication system</li>
+              <li><i class="fas fa-check-circle"></i> Shopping cart with sessions</li>
+              <li><i class="fas fa-check-circle"></i> Product search & filtering</li>
+              <li><i class="fas fa-check-circle"></i> Admin dashboard</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <span class="project-type">Coursework</span>
+            <h3 class="project-title">Restaurant Management</h3>
+            <p class="project-description">
+              Desktop application for restaurant operations including order management,
+              inventory tracking, and sales reporting.
+            </p>
+
+            <div class="project-tech">
+              <span class="tech-tag">C#</span>
+              <span class="tech-tag">.NET Forms</span>
+              <span class="tech-tag">SQL Server</span>
+            </div>
+
+            <ul class="project-features">
+              <li><i class="fas fa-check-circle"></i> Order management system</li>
+              <li><i class="fas fa-check-circle"></i> Inventory tracking</li>
+              <li><i class="fas fa-check-circle"></i> Sales analytics</li>
+              <li><i class="fas fa-check-circle"></i> Report generation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <span class="project-type">Personal</span>
+            <h3 class="project-title">Task Manager App</h3>
+            <p class="project-description">
+              Cross-platform task management application with real-time synchronization,
+              cloud backup, and push notifications.
+            </p>
+
+            <div class="project-tech">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Firebase</span>
+            </div>
+
+            <ul class="project-features">
+              <li><i class="fas fa-check-circle"></i> Cross-platform (Web/Mobile)</li>
+              <li><i class="fas fa-check-circle"></i> Real-time sync</li>
+              <li><i class="fas fa-check-circle"></i> User authentication</li>
+              <li><i class="fas fa-check-circle"></i> Cloud backup</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="background: var(--surface);">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div class="contact-item-content">
+              <h3>Email</h3>
+              <p>almikhlafi.ibrahim@email.com</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div class="contact-item-content">
+              <h3>Phone</h3>
+              <p>+967 777 136 688</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="contact-item-content">
+              <h3>Location</h3>
+              <p>San'a, Yemen</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-graduation-cap"></i>
+            <div class="contact-item-content">
+              <h3>Education</h3>
+              <p>Sana'a University (BSc IT)</p>
+              <p>Expected Graduation: 2027</p>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/al-mikhlafi-ibrahim-5b2a65343/" target="_blank" class="social-link">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/Almikhlafi-Ibrahim" target="_blank" class="social-link">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:almikhlafi.ibrahim@email.com" class="social-link">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="education-card">
+          <h3 style="color: var(--text); margin-bottom: 1rem;">Available For</h3>
+          <ul class="project-features" style="margin-bottom: 2rem;">
+            <li><i class="fas fa-code"></i> Web Development Projects</li>
+            <li><i class="fas fa-mobile-alt"></i> Cross-Platform Applications</li>
+            <li><i class="fas fa-database"></i> Database Design & Management</li>
+            <li><i class="fas fa-shield-alt"></i> Web Security Implementation</li>
+            <li><i class="fas fa-laptop-code"></i> Full Stack Development</li>
+          </ul>
+
+          <div style="margin-top: 2rem;">
+            <a href="mailto:almikhlafi.ibrahim@email.com" class="btn"
+              style="width: 100%; text-align: center; justify-content: center;">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div style="margin-bottom: 2rem;">
+          <a href="#" class="logo" style="font-size: 2rem;">ibrahim<span>.</span>dev</a>
+        </div>
+
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="copyright">
+          <p>&copy; 2023 Ibrahim Almikhlafi. All rights reserved.</p>
+          <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.8rem;">
+            Built with <i class="fas fa-heart" style="color: #ef4444;"></i> and code
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      mobileMenuBtn.innerHTML = navMenu.classList.contains('active')
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+    });
+
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add scroll effect to header
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.backgroundColor = 'rgba(10, 10, 10, 0.98)';
+        header.style.backdropFilter = 'blur(20px)';
+      } else {
+        header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+        header.style.backdropFilter = 'blur(10px)';
+      }
+    });
+  </script>
+</body>
+
+</html>
